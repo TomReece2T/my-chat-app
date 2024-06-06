@@ -11,6 +11,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
+// Route for the second page
+app.get('/chat', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public', 'chat.html'));
+  });
+
 // Use the port defined by Heroku or default to 5000
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
