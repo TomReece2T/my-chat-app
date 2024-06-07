@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>My Chat App</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/10.1.4/dist/converse.min.css">
-    <script src="https://cdn.conversejs.org/10.1.4/dist/converse.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="https://cdn.conversejs.org/10.1.4/dist/converse.min.css"
+    />
+    <script
+      src="https://cdn.conversejs.org/10.1.4/dist/converse.min.js"
+      charset="utf-8"
+    ></script>
   </head>
 
   <body>
-
     <h1>My Chat App Homepage</h1>
-
   </body>
 
   <script>
-    converse.initialize({
-        bosh_service_url: 'https://conversejs.org/http-bind/', // Please use this connection manager only for testing purposes
-        show_controlbox_by_default: true
+    document.addEventListener("DOMContentLoaded", function () {
+      converse.plugins.add("security-labels", {
+        dependencies: [],
+
+        initialize() {
+          console.log("Security Labels plugin is initialized!");
+
+          // Add event listener for incoming messages
+          this.converse.listen.on("message", this.addSecurityLabel);
+        },
+
+        addSecurityLabel(message) {
+          // Define your security labels
+          const securityLabel = "Confidential"; // Example security label
+
+          // Append the security label to the message
+          message.set("body", `[${securityLabel}] ${message.get("body")}`);
+
+          console.log("Added security label to message:", message);
+        },
+      });
+
+      converse.initialize({
+        bosh_service_url: "https://conversejs.org/http-bind/", // Please use this connection manager only for testing purposes
+        show_controlbox_by_default: true,
+      });
     });
   </script>
-
 </html>
