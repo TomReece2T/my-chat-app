@@ -10,76 +10,20 @@
       rel="stylesheet"
       type="text/css"
       media="screen"
-      href="https://cdn.conversejs.org/10.1.4/dist/converse.min.css"
+      href="https://cdn.conversejs.org/dist/converse.min.css"
     />
     <script
-      src="https://cdn.conversejs.org/10.1.4/dist/converse.min.js"
+      src="https://cdn.conversejs.org/dist/converse.min.js"
       charset="utf-8"
     ></script>
+    <!-- <script src="../node_modules/@converse/headless/dist/converse-headless.js"></script> -->
   </head>
 
   <body>
     <h1>My Chat App Homepage</h1>
   </body>
 
-  <script>
+  
+  <script src="index.js"></script>
 
-    // import converse from "@converse/headless/converse-core";
-    // const { Promise, Strophe, dayjs, sizzle, _, $build, $iq, $msg, $pres } = converse.env;
-
-    document.addEventListener("DOMContentLoaded", function () {
-
-      converse.plugins.add("security-labels", {
-        dependencies: [],
-
-        initialize() {
-          const _converse = this._converse;
-
-          console.log("Security Labels plugin is initialized!");
-          _converse.log.log("Security Labels plugin is initialized!");
-
-          // _converse.api.listen.on('beforeMessageSend', function addSecurityLabel(message){
-          //   _converse.log.log("addSecurityLabel() start");
-          //   console.log('addSecurityLabel() start')
-          //   const securityLabel = "Confidential"; 
-          //   if (message.body){
-          //     message.body = `[${securityLabel}] ${message.body}`;
-          //     console.log('Added security label to message:', message.body);
-          //   }
-          // });
-
-          _converse.api.listen.on('getToolbarButtons', (toolbar_el, buttons) => {
-            console.log('do something to toolbar buttons, toolbar_el, buttons', toolbar_el, buttons)
-            const mybutton = document.createElement('button');
-            mybutton.id = 'mybutton';
-            mybutton.textContent = 'Mark as SECRET';
-            mybutton.onclick = function() {
-              console.log('you made a message SECRET')
-              alert('you made a message SECRET')
-            }
-            buttons.push(mybutton);
-            return buttons;
-          });
-
-        },
-
-        // addSecurityLabel(message) {
-        //   console.log('addSecurityLabel() start, message', message)
-        //   const securityLabel = "Confidential";
-
-        //   if (message.body){
-        //     message.body = `[${securityLabel}] ${message.body}`;
-        //     console.log('Added security label to message:', message.body);
-        //   }
-        // },
-
-      });
-
-      converse.initialize({
-        bosh_service_url: 'https://conversejs.org/http-bind/', // Please use this connection manager only for testing purposes
-        view_mode: 'fullscreen',
-        whitelisted_plugins: ['security-labels']
-      });
-    });
-  </script>
 </html>
