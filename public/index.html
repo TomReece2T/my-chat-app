@@ -7,38 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Chat App</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@converse/headless/dist/converse.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@converse/headless/dist/themes/default.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/10.1.4/dist/converse.min.css">
+    <script src="https://cdn.conversejs.org/10.1.4/dist/converse.min.js" charset="utf-8"></script>
   </head>
 
   <body>
-    
+
     <h1>My Chat App Homepage</h1>
 
     <script src="https://cdn.jsdelivr.net/npm/@converse/headless/dist/converse.min.js"></script>
 	  <script src="index.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          converse.initialize({
-              bosh_service_url: 'https://conversejs.org/http-bind/',  // Replace with your own BOSH server URL
-              websocket_url: 'wss://conversejs.org/xmpp-websocket',  // Optional: WebSocket URL
-              authentication: 'login',  // Set authentication method: 'login', 'anonymous', 'prebind', etc.
-              jid: 'user@example.com',  // Optional: Jabber ID for prebind authentication
-              password: 'password',  // Optional: Password for prebind authentication
-              auto_login: false,  // Automatically log in the user
-              allow_logout: true,  // Allow the user to log out
-              auto_join_rooms: [  // Automatically join these MUC rooms
-                  'room1@muc.example.com',
-                  'room2@muc.example.com'
-              ],
-              blacklisted_plugins: ['converse-bookmarks'],  // Do not load these plugins
-              whitelisted_plugins: ['converse-muc'],  // Only load these plugins
-              debug: true  // Enable debugging output
-          });
-      });
-  </script>
-
   </body>
+
+  <script>
+    converse.initialize({
+        bosh_service_url: 'https://conversejs.org/http-bind/', // Please use this connection manager only for testing purposes
+        show_controlbox_by_default: true
+    });
+  </script>
 
 </html>
